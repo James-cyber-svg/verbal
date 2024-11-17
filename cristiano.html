@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="A tribute to Cristiano Ronaldo, the greatest footballer of all time. Explore his achievements, iconic moments, and career highlights.">
+    <title>Cristiano Ronaldo</title>
+    <link rel="stylesheet" href="css/cristiano.css">
+</head>
+
+<body>
+    <header class="top-header">
+        <h2 class="name-heading">Cristiano Ronaldo</h2>
+        <p class="description">The greatest footballer of all time</p>
+    </header>
+
+    <nav class="top-menu">
+        <ul>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#achievements">Achievements</a></li>
+            <a href="#gallery">Gallery</a>
+            <a href="https://en.wikipedia.org/wiki/Cristiano_Ronaldo"target="_blank">Wikipedia</a>
+            <a href="https://www.realmadrid.com/en-US/the-club/history/football-legends/cristiano-ronaldo-dos-santos-aveiro"target="_blank">Real Madrid Website</a>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="about">
+            <h2 class="subtitle">About</h2>
+            <p>Cristiano Ronaldo is a Portuguese professional footballer widely regarded as one of the greatest players
+                of all time.
+                Known for his incredible goal-scoring ability, speed, and athleticism, Ronaldo has played for top clubs
+                such
+                as Sporting CP, Manchester United, Real Madrid, Juventus, and the Portugal national team.</p>
+        </section>
+
+        <section id="achievements">
+            <h2 class="subtitle">Achievements</h2>
+            <p>Throughout his career, Ronaldo has won numerous titles, including 5 Ballon d'Or awards, 5 Champions
+                League trophies, and 7 league titles across different countries. He is also the all-time top scorer for
+                both Portugal and Real Madrid and will hopefully reach 1000 goals soon.</p>
+        </section>
+
+        <div class="image-one">
+            <img src="images/ronaldo_rm.jpeg" width="400px">
+        </div>
+
+        <section id="gallery">
+            <h2 class="subtitle">Gallery</h2>
+            <p>Here are some iconic moments from Ronaldo's career:</p>
+            <ul>
+                Ronaldo lifting the UEFA Champions League trophy.
+                His famous free-kick against Spain in the 2018 World Cup and scaring legendary defenders Piqué and
+                Nacho.
+                Celebrating his goals with fans and teammates.
+                And we all know the famous "Suuiiiiiiiii!" celebration.
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="subtitle">Ballon d'Ors</h2>
+            <p>Ronaldo has won many Ballon d'Or awards, with his first one in 2008. That year, he was phenomenal,
+                winning every single individual trophy and his first Champions League. His next Ballon d'Ors came in
+                2013, 2014, 2016, and 2017.</p>
+        </section>
+    </main>
+
+    <div class="ronaldo-video">
+        <video width="400" controls>
+            <source src="images/ronaldo_video.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="image-two">
+        <img src="images/ronaldo.jpeg" width="400px">
+    </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Cristiano Ronaldo Site. All rights reserved.</p>
+    </footer>
+    <button onclick="topFunction()" id="goToTop" title="Go to top">Top</button>
+</body>
+
+<script>
+    function smoothScroll(target, duration) {
+        var target = document.querySelector(target);
+        var targetPosition = target.getBoundingClientRect().top;
+        var startPosition = window.pageYOffset;
+        var distance = targetPosition - startPosition;
+        var startTime = null;
+
+        function animation(currentTime) {
+            if (startTime === null) startTime = currentTime;
+            var timeElapsed = currentTime - startTime;
+            var run = easing(timeElapsed, startPosition, distance, duration);
+            window.scrollTo(0, run);
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+
+        function easing(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t + b;
+            t--;
+            return -c / 2 * (t * (t - 2) - 1) + b;
+        }
+
+        requestAnimationFrame(animation);
+    }
+    const links = ['#home', '#about', '#gallery', '#achievements'];
+    const selectors = links.map(link => document.querySelector(link));
+    const listeners = links.map(link => { return { link: link, query: document.querySelector(`a[href='${link}']`) } });
+
+    listeners.map(item => item.query.addEventListener("click", function (e) {
+        smoothScroll(item.link, 1000)
+    }));
+
+    let mybutton = document.getElementById("goToTop");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+</script>
+
+</html>
